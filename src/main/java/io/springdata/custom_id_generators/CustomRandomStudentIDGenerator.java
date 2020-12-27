@@ -1,13 +1,13 @@
-package io.springdata;
-
-import java.io.Serializable;
-import java.util.Random;
+package io.springdata.custom_id_generators;
 
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
 
-public class CustomRandomIDGenerator implements IdentifierGenerator {
+import java.io.Serializable;
+import java.util.Random;
+
+public class CustomRandomStudentIDGenerator implements IdentifierGenerator {
 
 	@Override
 	public Serializable generate(SharedSessionContractImplementor si, Object obj) throws HibernateException {
@@ -15,7 +15,7 @@ public class CustomRandomIDGenerator implements IdentifierGenerator {
 		int id = 0;
 		random = new Random();
 		id = random.nextInt(1000000);
-		return new Long(id);
+		return id + random.hashCode() + "Bunty";
 	}
 
 }
